@@ -1,0 +1,15 @@
+The following instruction is ONLY for Ubuntu:
+
+1. pip install django==1.8.2
+2. pip install mysqlclient
+3. update the jobooking/settings.py's database setting to the following:
+
+DATABASES = {
+    'default': {
+        'NAME': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': '',
+        'PASSWORD': '',      
+    }
+}
+4. run "python manage.py migrate"
