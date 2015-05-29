@@ -16,7 +16,9 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-urlpatterns = [
-    url(r'^authentication/', include('authentication.urls')),   
+urlpatterns = [ 
+    url('', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^jobooker/', include('jobooker.urls')), 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
