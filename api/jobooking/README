@@ -14,3 +14,4 @@ DATABASES = {
 }
 4. run "python manage.py migrate"
 5. pip install django-oauth-toolkit python-social-auth
+6. pip install djangorestframework
