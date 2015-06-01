@@ -16,5 +16,7 @@ from django.utils.six import BytesIO
 stream = BytesIO(content)
 data = JSONParser().parse(stream)
 serializer = JobookerSerializer(data=data)
-
-
+serializer.is_valid()
+serializer.validated_data
+serializer.save()
+serializer.data
