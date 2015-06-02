@@ -21,8 +21,6 @@ class JobookerDetail(generics.RetrieveDestroyAPIView):
         user = self.request.user
         return Jobooker.objects.filter(owner=user)
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the jobooker index.")
 
 
 

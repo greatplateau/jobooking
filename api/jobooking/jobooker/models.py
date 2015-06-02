@@ -5,6 +5,6 @@ from django.db import models
 class Jobooker(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     firstName = models.CharField(max_length=100, default='')
-    owner =  models.ForeignKey('auth.User', related_name="jobooker",default='')
+    owner =  models.ForeignKey('auth.User', related_name="jobooker")
     class Meta:
         ordering = ('created',)

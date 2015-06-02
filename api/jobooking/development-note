@@ -1,0 +1,12 @@
+1. add more detail to user model
+
+https://docs.djangoproject.com/en/dev/topics/auth/#storing-additional-information-about-users
+
+2. oauth tutorial
+
+http://httplambda.com/a-rest-api-with-django-and-oauthw-authentication/
+
+3. interacting with django auth system
+https://docs.djangoproject.com/en/1.8/topics/auth/default/#user-objects
+
+
