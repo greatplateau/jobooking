@@ -31,14 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.admin',
     'django.contrib.staticfiles',
     'rest_framework',
     'jobooker',
+    'jobs',
     'social.apps.django_app.default',
     'oauth2_provider',
     
@@ -57,6 +58,8 @@ OAUTH2_PROVIDER = {
     # this is the list of available scopes
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
 }
+
+
 
 SOCIAL_AUTH_FACEBOOK_KEY = 'test1'#YOUR FACEBOOK APP KEY
 SOCIAL_AUTH_FACEBOOK_SECRET = 'test1'#YOUR FACEBOOK APP SECRET

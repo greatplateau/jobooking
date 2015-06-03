@@ -16,12 +16,8 @@ class Migration(migrations.Migration):
             name='Jobooker',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('firstName', models.CharField(default=b'', max_length=100)),
-                ('owner', models.ForeignKey(related_name='jobooker', default=b'', to=settings.AUTH_USER_MODEL)),
+                ('phone_no', models.CharField(max_length=100)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
-            options={
-                'ordering': ('created',),
-            },
         ),
     ]

@@ -17,3 +17,11 @@ DATABASES = {
 6. pip install djangorestframework
 7. need to make sure the lib requests need to be 2.0.0
 
+
+
+Development quite note
+
+sudo apt-get install libffi-dev
+sudo apt-get remove python-openssl
+sudo pip install pyOpenSSL
+sudo  pip install requests==2.0.0 --upgrade
