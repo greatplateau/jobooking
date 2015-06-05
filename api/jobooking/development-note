@@ -12,3 +12,8 @@ https://docs.djangoproject.com/en/1.8/topics/auth/default/#user-objects
 4. custom django user model
 
 http://blackglasses.me/2013/09/17/custom-django-user-model/
+
+
+5. login logout with oauth framework
+
+https://yeti.co/blog/oauth2-with-django-rest-framework/

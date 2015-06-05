@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .tools import get_access_token
 from django.http import HttpResponse
+from django.shortcuts import render
+from .forms import SigninForm
+from oauth2_provider.models import Application
 
 
 @api_view(['POST'])
@@ -29,20 +32,28 @@ def create_jobooker(request):
 def sign_in(request):
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-	        login(request,user)
-                return get_access_token(user)
-            else:
-                return HttpResponse("error")
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+	            login(request,user)
+                    Application.objects.filter(user_id = user.id).delete()
+                    Application.objects.create(user=user,name="jobooker", 
+                                   client_type=Application.CLIENT_CONFIDENTIAL,
+                                   authorization_grant_type=Application.GRANT_PASSWORD)
+                    return get_access_token(user)
+                else:
+                    return HttpResponse("error")
 
- #   else:
- #       form = NameForm()
+    else:
+        form = SigninForm()
 
-    return HttpResponse("success") 
+    return render(request, 'signin.html', {
+        'form': form,
+    }) 
 
 
 
