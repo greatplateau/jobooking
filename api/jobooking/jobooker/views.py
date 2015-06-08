@@ -11,18 +11,19 @@ from django.shortcuts import render
 from .forms import SigninForm
 from oauth2_provider.models import Application
 
-
 @api_view(['POST'])
 def create_jobooker(request):
     serialized = UserSerializer(data=request.DATA)
+   
     if serialized.is_valid():
-        serialized.save()
-#        User.objects.create_user(
- #           serialized.init_data['email'],
+       
+        User.objects.create_user(
+           
  
-#           serialized.init_data['username'],
- #           serialized.init_data['password']
-  #      )
+           serialized.data['username'],
+            serialized.data['email'],
+            serialized.data['password']
+        )
         return Response(serialized.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
@@ -30,12 +31,13 @@ def create_jobooker(request):
 
 
 def sign_in(request):
-
+    
     if request.method == 'POST':
         form = SigninForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            print username + " " + password
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
@@ -47,7 +49,8 @@ def sign_in(request):
                     return get_access_token(user)
                 else:
                     return HttpResponse("error")
-
+            else:
+                return HttpResponse("check your user name and password")
     else:
         form = SigninForm()
 
