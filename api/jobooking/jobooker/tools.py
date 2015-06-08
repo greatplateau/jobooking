@@ -21,8 +21,9 @@ def get_token_json(access_token):
     return JsonResponse(token)
 
 
-
-
+def remove_access_token(token):
+    old_access_token = AccessToken.objects.get(token=token)
+    old_access_token.delete() 
 
 def get_access_token(user):
 

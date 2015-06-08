@@ -4,12 +4,14 @@ from rest_framework.decorators import api_view
 from jobooker.models import Jobooker
 from jobooker.serializer import UserSerializer
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
-from .tools import get_access_token
+from django.contrib.auth import authenticate, login, logout
+from .tools import *
 from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import SigninForm
 from oauth2_provider.models import Application
+from oauth2_provider.decorators import protected_resource 
+
 
 @api_view(['POST'])
 def create_jobooker(request):
@@ -32,15 +34,13 @@ def create_jobooker(request):
 @api_view(['POST'])
 def sign_in(request):
     serialized = UserSerializer(data=request.DATA)
-    
-    
     username = serialized.initial_data['username']
     password = serialized.initial_data['password']
     print username + " " + password
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:
-	    login(request,user)
+	    #login(request,user)
             Application.objects.filter(user_id = user.id).delete()
             Application.objects.create(user=user,name="jobooker", 
                                    client_type=Application.CLIENT_CONFIDENTIAL,
@@ -51,5 +51,9 @@ def sign_in(request):
     else:
         return HttpResponse("check your user name and password")
    
-
-
+@protected_resource()
+def sign_out(request):
+    token= request.META['HTTP_AUTHORIZATION'].split(" ")[1]
+    remove_access_token(token)
+    #logout(request)
+    return HttpResponse('Secret contents!', status=200)   
