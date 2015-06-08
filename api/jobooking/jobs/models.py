@@ -9,4 +9,4 @@ class Job(models.Model):
     job_cost = models.DecimalField(max_digits=7, decimal_places=2)
     owner =  models.ForeignKey('auth.User', related_name="jobs")
     class Meta:
-        ordering = ('created',)
+        ordering = ('created',)   
