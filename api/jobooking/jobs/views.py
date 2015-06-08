@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from jobs.models import Job
 from jobs.models import Category
 from jobs.serializer import JobSerializer
+from jobs.serializer import CategorySerializer
 from rest_framework import generics, permissions
 
 
@@ -23,10 +24,8 @@ class JobDetail(generics.RetrieveDestroyAPIView):
         return Jobooker.objects.filter(owner=user)
 
 class CategoryList(generics.ListCreateAPIView):
-    serializer_class = JobSerializer
+    serializer_class = CategorySerializer
     permission_classes = (permissions.IsAuthenticated,)
+
     def get_queryset(self):
-        category = self.request.category
-        return Category.objects
-
-
+        return Category.objects.all()
