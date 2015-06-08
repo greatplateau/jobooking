@@ -8,8 +8,7 @@ class JobookerSerializer(serializers.ModelSerializer):
         fields = ('id', 'firstName')
 
 class UserSerializer(serializers.ModelSerializer):
-
+    
     class Meta:
         model = User
-        fields = ('username', )
-
+        fields = ('username','password','email' )
