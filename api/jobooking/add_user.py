@@ -6,4 +6,7 @@ user.last_name = 'Lennon'
 user.save()
 
 
+user = User.objects.create_user('tom','tom@thebeatles.com', 'tompassword')
+user.last_name = 'Stark'
 
+user.save()
