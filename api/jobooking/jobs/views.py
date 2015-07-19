@@ -10,8 +10,7 @@ class JobList(generics.ListCreateAPIView):
     serializer_class = JobSerializer
     permission_classes = (permissions.IsAuthenticated,)
     def get_queryset(self):
-        user = self.request.user
-        return Job.objects.filter(owner=user)
+        return Job.objects.all()
     
 
 

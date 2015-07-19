@@ -25,3 +25,38 @@ sudo apt-get install libffi-dev
 sudo apt-get remove python-openssl
 sudo pip install pyOpenSSL
 sudo  pip install requests==2.0.0 --upgrade
+
+
+Django
+~/Development/jobooking/api/jobooking$ python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py shell < add_user.py
+python manage.py shell < add_category.py 
+python manage.py shell < add_image.py
+python manage.py shell < add_job.py
+
+curl --dump-header - -H "Accept: application/json" -H "Content-Type: application/json" -X POST --data '{"username":"john","password":"johnpassword","email":"dannyz@gmail.com"}' http://localhost:8000/jobooker/signin
+curl -H "Authorization: Bearer xYfbMpadjTaQ3SQYnW1uKc6vNVRrnN" http://localhost:8000/jobs/
+curl -H "Authorization: Bearer xYfbMpadjTaQ3SQYnW1uKc6vNVRrnN" http://localhost:8000/jobs/category/
+
+
+
+MySql
+mysql -uroot -pdannyz jobooking
+show tables;
+desc jobs_job;
+select * from jobs_job;
+
+drop database jobooking;
+create database jobooking;
+show databases;
+use jobooking;
+
+
+Git
+git checkout -b <branch name>
+git add README.md
+git commit -m "add_user.py: add a second user"
+git push -u origin <branch name>
