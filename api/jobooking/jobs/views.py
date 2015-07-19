@@ -15,13 +15,12 @@ class JobList(generics.ListCreateAPIView):
     
 
 
-class JobDetail(generics.RetrieveDestroyAPIView):
+class JobDetail(generics.RetrieveAPIView):
     serializer_class = JobSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    #permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        user = self.request.user
-        return Jobooker.objects.filter(owner=user)
+        return Job.objects.get(job_id=1)
 
 class CategoryList(generics.ListCreateAPIView):
     serializer_class = CategorySerializer

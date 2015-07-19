@@ -7,8 +7,11 @@ class Job(models.Model):
     job_reference = models.CharField(max_length=100, default='')
     job_title = models.CharField(max_length=100, default='')
     job_cost = models.DecimalField(max_digits=7, decimal_places=2)
-    owner =  models.ForeignKey('auth.User', related_name="jobs")
-    category = models.ForeignKey('Category',default='')
+    job_descripion = models.TextField()
+    image_id = models.PositiveIntegerField()
+    timetable_id = models.PositiveIntegerField()
+    #jobookee_id = models.ForeignKey('Jobookee',default='')
+    category = models.PositiveIntegerField()
     class Meta:
         ordering = ('created',)   
 
