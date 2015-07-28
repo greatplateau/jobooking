@@ -11,4 +11,4 @@ class JobSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('category_name',)
+        fields = ('id','category_name','image')

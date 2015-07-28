@@ -21,6 +21,7 @@ class Job(models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100,default='')
+    image = models.CharField(max_length=1000,default='xxx/yyy')
 
 class Image(models.Model):
     image_url = models.URLField(max_length=1000,default='')

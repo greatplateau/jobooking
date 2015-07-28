@@ -24,7 +24,7 @@ class JobDetail(generics.RetrieveDestroyAPIView):
 
 class CategoryList(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    #permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
         return Category.objects.all()
